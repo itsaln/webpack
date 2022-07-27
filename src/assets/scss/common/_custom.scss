@@ -1,0 +1,17 @@
+// Your custom styles:
+
+.round {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c4c4c4;
+  border-radius: 12px;
+}
+
+@media screen and (max-width: 375px) {
+  .round {
+    background-color: red;
+  }
+}
