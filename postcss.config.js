@@ -5,18 +5,26 @@
 */
 
 module.exports = {
-  plugins: [
-    require('autoprefixer'),
-    require('mqpacker'),
-    require('cssnano')({
-      preset: [
-        'default',
-        {
-          discardComments: {
-            removeAll: true
-          }
-        }
-      ]
-    })
-  ]
+  plugins: {
+    'postcss-preset-env': {
+        browsers: 'last 2 versions'
+      }
+  }
 }
+
+// module.exports = {
+//   plugins: [
+//     require('autoprefixer'),
+//     require('mqpacker'),
+//     require('cssnano')({
+//       preset: [
+//         'default',
+//         {
+//           discardComments: {
+//             removeAll: true
+//           }
+//         }
+//       ]
+//     })
+//   ]
+// }

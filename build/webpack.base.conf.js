@@ -45,12 +45,12 @@ module.exports = {
       {
         // JavaScript
         test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: '/node_modules/'
+        exclude: /node_modules/,
+        use: ['babel-loader']
       },
       {
         // Fonts
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[contenthash].[ext]',
@@ -59,7 +59,7 @@ module.exports = {
       },
       {
         // images / icons
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]'
@@ -75,30 +75,10 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: true,
-              ProcessOptions: {
-                from: ''
-              }
-              // config: { path: `./postcss.config.js` }
+              sourceMap: true
             }
           },
           'sass-loader'
-        ]
-      },
-      {
-        // css
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-              // config: { path: `./postcss.config.js` }
-            }
-          }
         ]
       }
     ]

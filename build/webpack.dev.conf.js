@@ -9,20 +9,20 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   },
   devtool: 'eval-cheap-module-source-map',
   devServer: {
+    historyApiFallback: true,
     static: {
-      directory: baseWebpackConfig.externals.paths.dist,
+      directory: baseWebpackConfig.externals.paths.dist
     },
+    open: true,
     compress: true,
-    port: 2323,
-    // overlay: {
-    //   warnings: true,
-    //   errors: true
-    // }
+    hot: true,
+    port: 2323
   },
   plugins: [
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map'
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 })
 
