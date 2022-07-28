@@ -1,5 +1,24 @@
 // Your custom styles:
 
+.cssnano-1 {
+  font-size: 24px;
+  margin: 12px 24px;
+  color: #8854d0;
+}
+
+.cssnano-2 {
+  font-size: 24px;
+  margin: 12px 24px;
+
+  @media screen and (min-width: $phoneWidth) {
+    color: #26de81;
+  }
+
+  @media screen and (min-width: $tableWidth) {
+    color: #444ce0;
+  }
+}
+
 .round {
   width: 100px;
   height: 100px;
