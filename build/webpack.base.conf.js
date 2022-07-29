@@ -24,7 +24,6 @@ module.exports = {
     // module: `${PATHS.src}/your-module.js`,
   },
   output: {
-    filename: `${PATHS.assets}js/[name].[contenthash].js`,
     path: PATHS.dist,
     clean: true
   },
@@ -90,9 +89,6 @@ module.exports = {
     }
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: `${PATHS.assets}css/[name].[contenthash].css`
-    }),
     new CopyWebpackPlugin({
       patterns: [
         // Images:
@@ -107,7 +103,6 @@ module.exports = {
         }
       ]
     }),
-
     ...PAGES.map(
       page =>
         new HtmlWebpackPlugin({

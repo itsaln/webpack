@@ -1,4 +1,5 @@
 // Main js file
-// see more: https://github.com/vedees/webpack-template/blob/master/README.md#import-js-files
+import * as $ from 'jquery'
+import 'bootstrap'
 
-console.log('its work')
+console.log('Jquery dom el:', $('.round'))
