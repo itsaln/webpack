@@ -11,8 +11,90 @@
 @include mixins.font-face('Montserrat', '../fonts/Montserrat/Montserrat-ExtraBold', 800);
 @include mixins.font-face('Montserrat', '../fonts/Montserrat/Montserrat-Black', 900);
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  background-color: variables.$background;
-  font-family: 'Montserrat', sans-serif;
-  color: variables.$foreground;
+  @apply bg-background font-montserrat font-normal text-base text-foreground;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  @apply font-semibold;
+}
+
+h1, .h1 {
+  @apply text-2xl;
+}
+
+h2, .h2 {
+  @apply text-xl;
+}
+
+h3, .h3 {
+  @apply text-lg;
+}
+
+h4, .h4 {
+  @apply text-base;
+}
+
+h5, .h5 {
+  @apply text-sm;
+}
+
+h6, .h6 {
+  @apply text-xs;
+}
+
+strong {
+  @apply font-semibold;
+}
+
+b {
+  @apply font-bold;
+}
+
+a {
+  @apply text-primary no-underline transition-opacity hover:opacity-80;
+}
+
+button {
+  @apply outline-border-none;
+}
+
+.header {
+  @apply border-b border-dark dark:border-white py-lg;
+}
+
+.content {
+  @apply flex flex-col;
+  height: 100vh;
+  min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
+  max-height: calc(100vh - (var(--header-height) + var(--footer-height)));
+}
+
+.footer {
+  @apply border-t border-dark dark:border-white py-lg;
+}
+
+.home {
+  @apply flex flex-col justify-center h-full py-sm;
+
+  &_title {
+    @apply font-bold text-primary text-center mb-lg;
+  }
+
+  &_img {
+    @apply size-[240px] mx-auto;
+  }
+}
+
+.about {
+  @apply h-full py-sm;
 }
