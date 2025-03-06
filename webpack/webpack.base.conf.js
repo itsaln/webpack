@@ -27,24 +27,27 @@ module.exports = {
 	},
 	module: {
 		rules: [
-			{ // JavaScript
+			{
+				// JavaScript
 				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
 				use: 'babel-loader'
 			},
-			{ // TypeScript
+			{
+				// TypeScript
 				test: /\.(ts|tsx)?$/,
 				exclude: /node_modules/,
 				use: 'ts-loader'
 			},
-			{ // Styles
+			{
+				// Styles
 				test: /\.(s[ac]|c)ss$/i,
 				use: [
 					// 'style-loader',
 					MiniCssExtractPlugin.loader,
 					// {
 					// 	loader: MiniCssExtractPlugin.loader,
-					// 	options: { publicPath: '../../' }
+					// 	options: { publicPath: '../images/' }
 					// },
 					'css-loader',
 					{
@@ -56,18 +59,20 @@ module.exports = {
 					'sass-loader'
 				]
 			},
-			{ // Fonts
+			{
+				// Fonts
 				test: /\.(woff(2)?|eot|ttf|otf)$/i,
 				type: 'asset/resource',
 				generator: {
-					filename: `${PATHS.assets}/fonts/[name].[contenthash][ext]`
+					filename: `${PATHS.assets}/fonts/[name].[hash][ext]`
 				}
 			},
-			{ // Images/Icons
+			{
+				// Images/Icons
 				test: /\.(png|jpg|jpeg|gif|svg)$/i,
 				type: 'asset/resource',
 				generator: {
-					filename: `${PATHS.assets}/images/[name].[contenthash][ext]`
+					filename: `${PATHS.assets}/images/[name].[hash][ext]`
 				}
 			},
 			{
@@ -91,16 +96,17 @@ module.exports = {
 	resolve: {
 		extensions: ['.tsx', '.ts', '.jsx', '.js'],
 		alias: {
-			'~': PATHS.src, // Example: import Dog from "~/assets/images/dog.jpg"
-			'@': `${PATHS.src}/js` // Example: import Sort from "@/utils/sort.js"
+			'~': PATHS.src, // Example: import Dog from '~/assets/images/dog.jpg'
+			'@': `${PATHS.src}/js` // Example: import Sort from '@/utils/sort.js'
 		}
 	},
 	plugins: [
 		new CopyWebpackPlugin({
 			patterns: [
-				{ // Static (copy to '/'):
+				{
+					// Static (copy to '/'):
 					from: `${PATHS.src}/static`,
-					to: ''
+					to: `${PATHS.dist}`
 				}
 			]
 		}),

@@ -6,12 +6,14 @@ const buildWebpackConfig = merge(baseWebpackConfig, {
 	mode: 'production',
 	target: 'browserslist',
 	output: {
-		filename: `${baseWebpackConfig.externals.paths.assets}/js/[name].bundle.min.js`,
+		// filename: `${baseWebpackConfig.externals.paths.assets}/js/[name].bundle.min.js`,
+		filename: '[name].bundle.min.js',
 		publicPath: './'
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: `${baseWebpackConfig.externals.paths.assets}/css/[name].bundle.min.css`
+			// filename: `${baseWebpackConfig.externals.paths.assets}/css/[name].bundle.min.css`
+			filename: '[name].bundle.min.css'
 		})
 	]
 })
