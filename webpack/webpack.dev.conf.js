@@ -5,6 +5,7 @@ const baseWebpackConfig = require('./webpack.base.conf')
 
 const devWebpackConfig = merge(baseWebpackConfig, {
 	mode: 'development',
+	target: 'web',
 	output: {
 		filename: `${baseWebpackConfig.externals.paths.assets}/js/[name].bundle.js`,
 		publicPath: '/'
@@ -17,7 +18,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 		},
 		open: true,
 		compress: true,
-		hot: true,
 		port: 3000
 	},
 	plugins: [

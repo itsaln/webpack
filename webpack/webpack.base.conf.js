@@ -18,12 +18,63 @@ module.exports = {
 		paths: PATHS
 	},
 	entry: {
-		app: `${PATHS.src}/main.js`
+		app: `${PATHS.src}/main.ts`
 		// module: `${PATHS.src}/your-module.js`,
 	},
 	output: {
 		path: PATHS.dist,
 		clean: true
+	},
+	module: {
+		rules: [
+			{ // JavaScript
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: 'babel-loader'
+			},
+			{ // TypeScript
+				test: /\.(ts|tsx)?$/,
+				exclude: /node_modules/,
+				use: 'ts-loader'
+			},
+			{ // Styles
+				test: /\.(s[ac]|c)ss$/i,
+				use: [
+					// 'style-loader',
+					MiniCssExtractPlugin.loader,
+					// {
+					// 	loader: MiniCssExtractPlugin.loader,
+					// 	options: { publicPath: '../../' }
+					// },
+					'css-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							sourceMap: true
+						}
+					},
+					'sass-loader'
+				]
+			},
+			{ // Fonts
+				test: /\.(woff(2)?|eot|ttf|otf)$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: `${PATHS.assets}/fonts/[name].[contenthash][ext]`
+				}
+			},
+			{ // Images/Icons
+				test: /\.(png|jpg|jpeg|gif|svg)$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: `${PATHS.assets}/images/[name].[contenthash][ext]`
+				}
+			},
+			{
+				test: /\.html$/i,
+				loader: 'html-loader'
+			}
+		]
 	},
 	optimization: {
 		splitChunks: {
@@ -37,64 +88,17 @@ module.exports = {
 			}
 		}
 	},
-	module: {
-		rules: [
-			{
-				// JavaScript
-				test: /\.js$/,
-				exclude: /node_modules/,
-				use: ['babel-loader']
-			},
-			{
-				// Fonts
-				test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-				loader: 'file-loader',
-				options: {
-					name: '[name].[contenthash].[ext]'
-				}
-			},
-			{
-				// images / icons
-				test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-				loader: 'file-loader',
-				options: {
-					name: '[name].[ext]'
-				}
-			},
-			{
-				// s[ac]ss
-				test: /\.s[ac]ss$/i,
-				use: [
-					// 'style-loader',
-					MiniCssExtractPlugin.loader,
-					'css-loader',
-					{
-						loader: 'postcss-loader',
-						options: {
-							sourceMap: true
-						}
-					},
-					'sass-loader'
-				]
-			}
-		]
-	},
 	resolve: {
+		extensions: ['.tsx', '.ts', '.jsx', '.js'],
 		alias: {
-			'~': PATHS.src, // Example: import Dog from "~/assets/img/dog.jpg"
+			'~': PATHS.src, // Example: import Dog from "~/assets/images/dog.jpg"
 			'@': `${PATHS.src}/js` // Example: import Sort from "@/utils/sort.js"
 		}
 	},
 	plugins: [
 		new CopyWebpackPlugin({
 			patterns: [
-				// Images:
-				{
-					from: `${PATHS.src}/${PATHS.assets}/img`,
-					to: `${PATHS.assets}/img`
-				},
-				// Static (copy to '/'):
-				{
+				{ // Static (copy to '/'):
 					from: `${PATHS.src}/static`,
 					to: ''
 				}

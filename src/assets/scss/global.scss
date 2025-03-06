@@ -75,8 +75,8 @@ button {
 .content {
   @apply flex flex-col;
   height: 100vh;
-  min-height: calc(100vh - (var(--header-height) + var(--footer-height)));
-  max-height: calc(100vh - (var(--header-height) + var(--footer-height)));
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  max-height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
 .footer {
@@ -91,7 +91,12 @@ button {
   }
 
   &_img {
-    @apply size-[240px] mx-auto;
+    @apply size-[240px] mx-auto mb-lg;
+  }
+
+  &_box {
+    @apply size-[160px] bg-no-repeat bg-cover rounded-garden mx-auto;
+    //background-image: url('../images/background.jpg');
   }
 }
 

@@ -4,6 +4,7 @@ const baseWebpackConfig = require('./webpack.base.conf')
 
 const buildWebpackConfig = merge(baseWebpackConfig, {
 	mode: 'production',
+	target: 'browserslist',
 	output: {
 		filename: `${baseWebpackConfig.externals.paths.assets}/js/[name].bundle.min.js`,
 		publicPath: './'
