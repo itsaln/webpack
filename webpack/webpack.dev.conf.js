@@ -7,8 +7,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 	mode: 'development',
 	target: 'web',
 	output: {
-		// filename: `${baseWebpackConfig.externals.paths.assets}/js/[name].bundle.js`,
-		filename: '[name].bundle.js',
+		filename: `${baseWebpackConfig.externals.paths.assets}/js/[name].bundle.js`,
+		// filename: '[name].bundle.js',
 		publicPath: '/'
 	},
 	devtool: 'eval-cheap-module-source-map',
