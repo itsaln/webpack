@@ -27,8 +27,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new MiniCssExtractPlugin({
-			// filename: `${baseWebpackConfig.externals.paths.assets}/css/[name].bundle.css`
-			filename: '[name].bundle.css'
+			filename: `${baseWebpackConfig.externals.paths.assets}/css/[name].bundle.css`
+			// filename: '[name].bundle.css'
 		})
 	]
 })

@@ -45,11 +45,12 @@ module.exports = {
 				use: [
 					// 'style-loader',
 					MiniCssExtractPlugin.loader,
-					// {
-					// 	loader: MiniCssExtractPlugin.loader,
-					// 	options: { publicPath: '../images/' }
-					// },
-					'css-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							url: false
+						}
+					},
 					{
 						loader: 'postcss-loader',
 						options: {
@@ -66,18 +67,6 @@ module.exports = {
 				generator: {
 					filename: `${PATHS.assets}/fonts/[name].[hash][ext]`
 				}
-			},
-			{
-				// Images/Icons
-				test: /\.(png|jpg|jpeg|gif|svg)$/i,
-				type: 'asset/resource',
-				generator: {
-					filename: `${PATHS.assets}/images/[name].[hash][ext]`
-				}
-			},
-			{
-				test: /\.html$/i,
-				loader: 'html-loader'
 			}
 		]
 	},
@@ -107,6 +96,16 @@ module.exports = {
 					// Static (copy to '/'):
 					from: `${PATHS.src}/static`,
 					to: `${PATHS.dist}`
+				},
+				{
+					// Images (copy to '/assets/fonts'):
+					from: `${PATHS.src}/${PATHS.assets}/fonts`,
+					to: `${PATHS.assets}/fonts`
+				},
+				{
+					// Images (copy to '/assets/images'):
+					from: `${PATHS.src}/${PATHS.assets}/images`,
+					to: `${PATHS.assets}/images`
 				}
 			]
 		}),
